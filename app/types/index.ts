@@ -62,3 +62,9 @@ export type NavLinkProps = {
   isActive: boolean;
   children: ReactNode;
 };
+
+export type ModelsPageProps = {
+  searchParams: {
+    query: string;
+  };
+};
