@@ -3,8 +3,10 @@ import { NavLinkProps } from "@/app/types";
 
 export default function NavLink({ href, isActive, children }: NavLinkProps) {
   return (
-    <div className='text-sm uppercase'>
-      <Link href={href} className={`px-4 py-2 ${isActive ? "text-orange-accent" : "text-gray-700"}  transition-colors rounded-md cursor-pointer hover:text-orange-accent`}>
+    <div className='text-xs uppercase tracking-widest'>
+      <Link
+        href={href}
+        className={`px-3 py-2 transition-colors duration-200 cursor-pointer hover:text-orange-accent ${isActive ? "text-orange-accent" : "text-muted"}`}>
         {children}
       </Link>
     </div>

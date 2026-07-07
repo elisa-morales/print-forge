@@ -11,14 +11,14 @@ export default async function Page({ searchParams }: ModelsPageProps) {
 
   return (
     <>
-      <Form action='/3d-models' className='w-full px-5 md:px-0 md:max-w-xl'>
+      <Form action='/3d-models' className='w-full mb-10 md:max-w-xl'>
         <input
           type='text'
           name='query'
           placeholder='E.g. dragon'
           autoComplete='off'
           defaultValue={query}
-          className='w-full py-3 pl-5 pr-5 text-sm placeholder-gray-500 bg-white border border-[#606060] rounded-full focus:border-[#606060] focus:outline-none focus:ring-0 md:text-base'
+          className='w-full py-3 text-sm bg-transparent border-0 border-b border-foreground placeholder:text-muted focus:border-foreground focus:outline-none focus:ring-0 md:text-base'
         />
       </Form>
       <ModelsGrid title='3D Models' models={filteredModels} />

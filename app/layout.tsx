@@ -1,4 +1,4 @@
-import { Albert_Sans, Montserrat_Alternates } from "next/font/google";
+import { Albert_Sans, Playfair_Display } from "next/font/google";
 import Navbar from "./components/Navbar";
 import type { RootLayoutProps } from "@/app/types";
 import "./globals.css";
@@ -6,19 +6,21 @@ import "./globals.css";
 const albertSans = Albert_Sans({
   subsets: ["latin"],
   display: "swap",
+  variable: "--font-albert-sans",
 });
 
-const montserratAlternates = Montserrat_Alternates({
+const playfairDisplay = Playfair_Display({
   subsets: ["latin"],
   display: "swap",
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
-  variable: "--font-montserrat-alternates",
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair-display",
 });
 
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang='en'>
-      <body className={`${albertSans.className} ${montserratAlternates.variable}`}>
+      <body className={`${albertSans.className} ${albertSans.variable} ${playfairDisplay.variable}`}>
         <Navbar />
         {children}
       </body>

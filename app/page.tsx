@@ -6,19 +6,29 @@ import heroImage from "@/public/hero-image.png";
 export default function Home() {
   return (
     <main>
-      <section className='flex flex-col-reverse items-center justify-between gap-8 px-6 py-12 mx-auto md:flex-row max-w-7xl'>
-        <div className='flex-1 space-y-6'>
-          <p className='hidden text-sm text-gray-600 uppercase md:block'>Your go-to platform for 3D printing files</p>
-          <h1 className='text-4xl font-bold md:text-5xl'>Discover what's possible with 3D Printing</h1>
-          <p className='text-lg text-gray-600'>Join our community of creators and explore a vast library of user-submitted models.</p>
+      <section className='relative overflow-hidden'>
+        <div className='absolute inset-0 pointer-events-none' aria-hidden='true'>
+          <div className='absolute top-1/3 right-1/4 w-[400px] h-[400px] rounded-full bg-orange-accent/50 blur-3xl' />
+        </div>
 
-          <div className='flex gap-4'>
-            <Link href={"/3d-models"}>
-              <button className='cursor-pointer px-6 py-3 text-black transition duration-100 bg-white border-2 border-black hover:bg-black hover:text-white'>Browse Models</button>
-            </Link>
+        <div className='relative flex flex-col-reverse items-center justify-between gap-12 px-8 py-20 mx-auto md:flex-row md:py-32 max-w-7xl lg:px-12 lg:gap-16'>
+          <div className='flex-1 space-y-8'>
+            <p className='hidden text-xs tracking-widest uppercase text-muted md:block'>Your go-to platform for 3D printing files</p>
+            <h1 className='text-4xl leading-tight md:text-6xl lg:text-7xl'>Discover what's possible with 3D Printing</h1>
+            <p className='max-w-lg text-base leading-relaxed text-muted md:text-lg'>Join our community of creators and explore a vast library of user-submitted models.</p>
+
+            <div className='flex gap-4 pt-2'>
+              <Link href={"/3d-models"}>
+                <button className='cursor-pointer px-8 py-3 text-sm uppercase tracking-widest text-foreground transition-colors duration-200 bg-transparent border border-foreground hover:bg-foreground hover:text-white'>
+                  Browse Models
+                </button>
+              </Link>
+            </div>
+          </div>
+          <div className='w-full max-w-md md:max-w-lg'>
+            <Image alt='hero image' src={heroImage.src} width={heroImage.width} height={heroImage.height} className='w-full h-auto' />
           </div>
         </div>
-        <Image alt='hero image' src={heroImage.src} width={heroImage.width} height={heroImage.height} />
       </section>
     </main>
   );
