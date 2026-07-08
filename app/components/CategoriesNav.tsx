@@ -1,24 +1,18 @@
-"use client";
-
-import { usePathname } from "next/navigation";
 import NavLink from "@/app/components/NavLink";
 import { getAllCategories } from "@/app/lib/categories";
 import type { Category } from "@/app/types";
 
-export default function CategoriesNav() {
-  const pathname = usePathname();
-  const categories: Category[] = getAllCategories();
+export default async function CategoriesNav() {
+  const categories: Category[] = await getAllCategories();
   return (
     <aside className='sticky top-0 z-10 w-full bg-surface border-b border-border md:bg-transparent md:fixed md:w-64 md:top-1/2 md:-translate-y-1/2 md:border-b-0 md:border-none'>
       <div className='relative'>
         <nav className='w-full overflow-x-auto md:overflow-visible scrollbar-hide'>
           <ul className='flex px-6 py-4 whitespace-nowrap md:flex-col md:px-8 md:py-0 md:space-x-0 md:space-y-1'>
-            <NavLink href='/3d-models' isActive={pathname === "/3d-models"}>
-              All
-            </NavLink>
+            <NavLink href='/3d-models'>All</NavLink>
             {categories.map((item) => (
-              <NavLink href={`/3d-models/categories/${item.slug}`} key={item.slug} isActive={pathname === `/3d-models/categories/${item.slug}`}>
-                {item.displayName}
+              <NavLink key={item.slug} href={`/3d-models/categories/${item.slug}`}>
+                {item.name}
               </NavLink>
             ))}
           </ul>

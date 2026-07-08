@@ -12,7 +12,7 @@ export type Model = {
 };
 
 export type Category = {
-  displayName: string;
+  name: string;
   slug: string;
 };
 
@@ -28,7 +28,7 @@ export type GetModelsParams = {
 
 export type CategoryPageProps = {
   params: Promise<{
-    categoryName: string;
+    categorySlug: string;
   }>;
 };
 
@@ -59,7 +59,6 @@ export type PillProps = {
 
 export type NavLinkProps = {
   href: string;
-  isActive: boolean;
   children: ReactNode;
 };
 

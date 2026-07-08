@@ -1,8 +1,7 @@
 import Image from "next/image";
 import { FaRegHeart } from "react-icons/fa6";
-import Pill from "@/app/components/Pill";
 import { getModelById } from "@/app/lib/models";
-import placeholderImg from "@/public/placeholder.png";
+import Pill from "@/app/components/Pill";
 import type { ModelDetailPageProps } from "@/app/types";
 
 export default async function ModelDetailPage({ params }: ModelDetailPageProps) {
@@ -14,7 +13,7 @@ export default async function ModelDetailPage({ params }: ModelDetailPageProps) 
       <article className='grid grid-cols-1 gap-12 lg:grid-cols-2 lg:gap-16'>
         {/* Image Section */}
         <figure className='relative overflow-hidden aspect-square'>
-          <Image src={placeholderImg.src} width={placeholderImg.width} height={placeholderImg.height} alt={`3D model of ${model.name}`} className='absolute inset-0 object-cover w-full h-full' />
+          <Image src={model.image} width={500} height={500} alt={`3D model of ${model.name}`} className='absolute inset-0 object-cover w-full h-full' />
         </figure>
 
         {/* Content Section */}
