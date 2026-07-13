@@ -30,6 +30,7 @@ export type CategoryPageProps = {
   params: Promise<{
     categorySlug: string;
   }>;
+  searchParams: Promise<{ sort?: string }>;
 };
 
 export type RootLayoutProps = Readonly<{
@@ -48,7 +49,8 @@ export type ModelCardProps = {
 };
 
 export type ModelsGridProps = {
-  title: string;
+  categoryName?: string;
+  search?: string;
   models: Model[];
 };
 
@@ -60,10 +62,21 @@ export type PillProps = {
 export type NavLinkProps = {
   href: string;
   children: ReactNode;
+  exact?: boolean;
 };
 
 export type ModelsPageProps = {
   searchParams: {
-    query: string;
+    search?: string;
+    sort?: string;
   };
+};
+
+export type SearchFormProps = {
+  search: string;
+};
+
+export type ButtonSortProps = {
+  children: ReactNode;
+  sort: string;
 };

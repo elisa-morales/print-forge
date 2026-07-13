@@ -11,15 +11,12 @@ export async function getAllCategories(): Promise<Category[]> {
   }
 }
 
-// export function getCategoryBySlug(slug: string): Category {
-//   const category = categories.find((c) => c.slug === slug);
-//   if (!category) {
-//     throw new Error(`Category with slug ${slug} not found`);
-//   }
-//   return category;
-// }
+export async function getCategoryBySlug(categorySlug: string) {
+  const db = await getDBConnection();
 
-// export function getnameFromSlug(slug: string): string {
-//   const category = getCategoryBySlug(slug);
-//   return category.name;
-// }
+  try {
+    return await db.get("SELECT * FROM categories WHERE slug=?", [categorySlug]);
+  } finally {
+    await db.close();
+  }
+}

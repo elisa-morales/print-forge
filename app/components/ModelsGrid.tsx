@@ -1,10 +1,18 @@
 import ModelCard from "@/app/components/ModelCard";
+import SortControls from "@/app/components/SortControls";
 import { ModelsGridProps, Model } from "@/app/types";
 
-export default function ModelsGrid({ title, models }: ModelsGridProps) {
+export default function ModelsGrid({ categoryName, search, models }: ModelsGridProps) {
+  let title = "3D Models";
+  if (categoryName) title = categoryName;
+  if (search) title = `Search results for "${search}"`;
   return (
     <div className='px-4 py-8 mx-auto md:px-0'>
-      <h1 className='mb-12 text-3xl md:text-4xl lg:text-5xl'>{title}</h1>
+      <div className='flex flex-col gap-2 md:flex-row md:justify-between mb-8'>
+        <h1 className='text-3xl font-bold'>{title}</h1>
+        <SortControls />
+      </div>
+
       <div className='grid grid-cols-1 gap-10 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 sm:gap-8 lg:gap-10'>
         {models.map((model: Model) => (
           <ModelCard key={model.id} model={model} />

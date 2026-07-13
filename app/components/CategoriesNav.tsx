@@ -9,7 +9,9 @@ export default async function CategoriesNav() {
       <div className='relative'>
         <nav className='w-full overflow-x-auto md:overflow-visible scrollbar-hide'>
           <ul className='flex px-6 py-4 whitespace-nowrap md:flex-col md:px-8 md:py-0 md:space-x-0 md:space-y-1'>
-            <NavLink href='/3d-models'>All</NavLink>
+            <NavLink exact href='/3d-models'>
+              All
+            </NavLink>
             {categories.map((item) => (
               <NavLink key={item.slug} href={`/3d-models/categories/${item.slug}`}>
                 {item.name}

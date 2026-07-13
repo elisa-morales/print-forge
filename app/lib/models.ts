@@ -1,20 +1,35 @@
 import { getDBConnection } from "@/app/lib/db";
-import type { Model, GetModelsParams } from "../types";
 
-export async function getModels() {
+export async function getModels({ search, sort, categorySlug }: { search?: string; sort?: string; categorySlug?: string }) {
   const db = await getDBConnection();
 
-  try {
-    return await db.all("SELECT * FROM models");
-  } finally {
-    await db.close();
+  let sql = "SELECT * FROM models";
+  const placeholders = [];
+
+  if (search) {
+    sql += " WHERE (name LIKE ? OR description LIKE ?)";
+    placeholders.push(`%${search}%`, `%${search}%`);
   }
-}
 
-export async function getModelsByCategorySlug(categorySlug: string) {
-  const db = await getDBConnection();
+  if (categorySlug) {
+    sql += " WHERE category=?";
+    placeholders.push(categorySlug);
+  }
+
+  if (sort) {
+    if (sort === "alpha") {
+      sql += " ORDER BY name ASC";
+    }
+    if (sort === "popular") {
+      sql += " ORDER BY likes DESC";
+    }
+    if (sort === "recent") {
+      sql += " ORDER BY dateAdded DESC";
+    }
+  }
+
   try {
-    return await db.all(`SELECT * FROM models WHERE category=?`, [categorySlug]);
+    return await db.all(sql, placeholders);
   } finally {
     await db.close();
   }

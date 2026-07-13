@@ -1,18 +1,17 @@
 import SearchForm from "@/app/components/SearchForm";
 import ModelsGrid from "@/app/components/ModelsGrid";
-import type { Model, ModelsPageProps } from "@/app/types";
 import { getModels } from "@/app/lib/models";
+import type { Model, ModelsPageProps } from "@/app/types";
 
 export default async function Page({ searchParams }: ModelsPageProps) {
-  const models: Model[] = await getModels();
-  const query = searchParams?.query?.toLowerCase() || "";
-
-  const filteredModels = query ? models.filter((model) => model.name.toLowerCase().includes(query) || model.description.toLowerCase().includes(query)) : models;
+  const search = (await searchParams)?.search?.toLowerCase() || "";
+  const sort = (await searchParams).sort?.toLowerCase() || "";
+  const models = await getModels({ search, sort });
 
   return (
     <>
-      <SearchForm query={query} />
-      <ModelsGrid title='3D Models' models={filteredModels} />
+      <SearchForm search={search} />
+      <ModelsGrid models={models} search={search} />
     </>
   );
 }
