@@ -3,10 +3,15 @@ import { FaRegHeart } from "react-icons/fa6";
 import { getModelById } from "@/app/lib/models";
 import Pill from "@/app/components/Pill";
 import type { ModelDetailPageProps } from "@/app/types";
+import { notFound } from "next/navigation";
 
 export default async function ModelDetailPage({ params }: ModelDetailPageProps) {
   const { id } = await params;
   const model = await getModelById(id);
+
+  if (!model) {
+    notFound();
+  }
 
   return (
     <div className='py-4 mx-auto md:py-8'>

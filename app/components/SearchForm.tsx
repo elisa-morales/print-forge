@@ -1,9 +1,25 @@
+"use client";
+
+import { usePathname, useRouter } from "next/navigation";
 import Form from "next/form";
 import { SearchFormProps } from "@/app/types";
 
-export default function SearchForm({ search }: SearchFormProps) {
+export default function SearchForm({ search, startTransition }: SearchFormProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+
+  function handleSearch(formData: FormData) {
+    const search = formData.get("search")?.toString().trim() || "";
+    const safeSearch = encodeURIComponent(search);
+    const url = search ? `${pathname}?search=${encodeURIComponent(safeSearch)}` : pathname;
+
+    startTransition(() => {
+      router.push(url);
+    });
+  }
+
   return (
-    <Form action='/3d-models' className='w-full mb-10 md:max-w-xl'>
+    <Form action={handleSearch} className='w-full mb-10 md:max-w-xl'>
       <input
         type='text'
         name='search'

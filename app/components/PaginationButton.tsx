@@ -1,0 +1,23 @@
+"use client";
+
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
+import { PaginationButtonProps } from "@/app/types";
+
+export default function PaginationButton({ page }: PaginationButtonProps) {
+  const pathname = usePathname();
+  const router = useRouter();
+  const searchParams = useSearchParams();
+
+  function handlePageSort() {
+    const urlSearchParams = new URLSearchParams(searchParams.toString());
+    urlSearchParams.set("page", page.toString());
+    const url = `${pathname}?${urlSearchParams.toString()}`;
+    router.push(url);
+  }
+
+  return (
+    <button className='px-3 py-1.5 text-sm rounded-md border cursor-pointer border-gray-300 text-gray-700 hover:bg-gray-100' onClick={handlePageSort}>
+      {page}
+    </button>
+  );
+}

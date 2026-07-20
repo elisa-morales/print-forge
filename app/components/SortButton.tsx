@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { ButtonSortProps } from "@/app/types";
 
-export default function SortButton({ children, sort }: ButtonSortProps) {
+export default function SortButton({ children, sort, startTransition }: ButtonSortProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -14,7 +14,9 @@ export default function SortButton({ children, sort }: ButtonSortProps) {
     const urlSearchParams = new URLSearchParams(searchParams.toString());
     urlSearchParams.set("sort", sort);
     const url = `${pathname}?${urlSearchParams.toString()}`;
-    router.push(url);
+    startTransition(() => {
+      router.push(url);
+    });
   }
 
   return (
