@@ -30,7 +30,7 @@ export type CategoryPageProps = {
   params: Promise<{
     categorySlug: string;
   }>;
-  searchParams: Promise<{ sort?: string; search?: string }>;
+  searchParams: Promise<{ sort?: string; search?: string; page?: string }>;
 };
 
 export type RootLayoutProps = Readonly<{
@@ -68,7 +68,7 @@ export type NavLinkProps = {
 };
 
 export type ModelsPageProps = {
-  searchParams: Promise<{ sort?: string; search?: string }>;
+  searchParams: Promise<{ sort?: string; search?: string; page?: string }>;
 };
 
 export type SearchFormProps = {
@@ -86,6 +86,8 @@ export type ModelBrowserProps = {
   categoryName?: string;
   search?: string;
   models: Model[];
+  totalPages: number;
+  currentPage: number;
 };
 
 export type SortControlsProps = {
@@ -101,6 +103,10 @@ export type NotFoundUIProps = {
 
 export type PaginationButtonProps = {
   page: number;
+  isActive: boolean;
 };
 
-// export type PaginationControlsProps = {};
+export type PaginationControlsProps = {
+  totalPages: number;
+  currentPage: number;
+};

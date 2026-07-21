@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PaginationButtonProps } from "@/app/types";
 
-export default function PaginationButton({ page }: PaginationButtonProps) {
+export default function PaginationButton({ page, isActive }: PaginationButtonProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -16,7 +16,10 @@ export default function PaginationButton({ page }: PaginationButtonProps) {
   }
 
   return (
-    <button className='px-3 py-1.5 text-sm rounded-md border cursor-pointer border-gray-300 text-gray-700 hover:bg-gray-100' onClick={handlePageSort}>
+    <button
+      className={`px-3 py-1.5 text-sm border cursor-pointer ${isActive ? "text-white bg-orange-400 border-orange-400" : "border-gray-300 text-gray-700 hover:bg-gray-100"}`}
+      onClick={handlePageSort}
+    >
       {page}
     </button>
   );
