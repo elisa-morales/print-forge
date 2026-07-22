@@ -103,7 +103,8 @@ export type NotFoundUIProps = {
 
 export type PaginationButtonProps = {
   page: number;
-  isActive: boolean;
+  isActive?: boolean;
+  label?: string;
 };
 
 export type PaginationControlsProps = {

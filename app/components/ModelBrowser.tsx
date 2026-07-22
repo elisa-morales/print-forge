@@ -13,7 +13,8 @@ export default function ModelBrowser({ search, models, categoryName, totalPages,
     <>
       <SearchForm startTransition={startTransition} search={search} />
       <ModelsGrid models={models} search={search} categoryName={categoryName} startTransition={startTransition} isPending={isPending} />
-      <PaginationControls totalPages={totalPages} currentPage={currentPage} />
+
+      {totalPages > 1 && <PaginationControls totalPages={totalPages} currentPage={currentPage} />}
     </>
   );
 }

@@ -13,6 +13,7 @@ export default function SortButton({ children, sort, startTransition }: ButtonSo
   function handleSort() {
     const urlSearchParams = new URLSearchParams(searchParams.toString());
     urlSearchParams.set("sort", sort);
+    urlSearchParams.delete("page");
     const url = `${pathname}?${urlSearchParams.toString()}`;
     startTransition(() => {
       router.push(url);

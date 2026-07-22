@@ -3,7 +3,7 @@
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
 import { PaginationButtonProps } from "@/app/types";
 
-export default function PaginationButton({ page, isActive }: PaginationButtonProps) {
+export default function PaginationButton({ page, isActive, label }: PaginationButtonProps) {
   const pathname = usePathname();
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -20,7 +20,7 @@ export default function PaginationButton({ page, isActive }: PaginationButtonPro
       className={`px-3 py-1.5 text-sm border cursor-pointer ${isActive ? "text-white bg-orange-400 border-orange-400" : "border-gray-300 text-gray-700 hover:bg-gray-100"}`}
       onClick={handlePageSort}
     >
-      {page}
+      {label || page}
     </button>
   );
 }

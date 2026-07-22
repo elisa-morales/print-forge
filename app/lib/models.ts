@@ -1,6 +1,6 @@
 import { getDBConnection } from "@/app/lib/db";
 
-export async function getModels({ search, sort, categorySlug, modelsPerPage, page }: { search?: string; sort?: string; categorySlug?: string; page: number; modelsPerPage: number }) {
+export async function getModels({ search, sort, categorySlug, modelsPerPage, page }: { search?: string; sort?: string | null; categorySlug?: string; page: number; modelsPerPage: number }) {
   const db = await getDBConnection();
 
   let sql = "SELECT * FROM models";
